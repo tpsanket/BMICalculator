@@ -1,28 +1,37 @@
 <!DOCTYPE html>
-
 <html>
 <head>
     <title><b>Calculate  your BMI</b></title>
+    <script src="http://knockoutjs.com/downloads/knockout-3.0.0.debug.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-<body>
-<form data-bind="submit : BMI">
-  <div class="title"> Enter your Parameters </div>
-  <div class="weightcss">
-    Weight : <input type="text" data-bind="value: weight , valueUpdate : 'keypress'"> (in kg)
-    hello <span data-bind="text: weight()"></span>
-  </div>
-  <div class="heightcss">
-    Height :<input type="text" data-bind="value: height"> (in cm)
+<body style="background-color : #D0D0D0 ">
+<form data-bind="submit : BMI" class="form-inline" role="form" style=" margin-left : 35%;
+  margin-top: 15%">
+  <div class="title"><h2>Enter your Parameters</h2>  </div>
+    <div class="form-group">
+      <label for="weight">Weight:</label><input type="text" data-bind="value: weight , valueUpdate : 'keypress'" class="form-control" id="Weight" placeholder="Enter Weight" style="margin-left :5px"> (in kg)
+    </div>
+    <p>
+      <div class="form-group">
+        <label for="Height">Height:</label><input type="text" data-bind="value: height" class="form-control" id="Height" placeholder="Enter Height" style="margin-left :5px"> (in cm)
+      </div>
+    </p>
   </div>
   <div>
-    <button type="submit" class="calculate">Calculate </button>
+   <button type="submit" class="btn btn-primary" style="margin-left :90px">Calculate</button>
   </div>
 </form>
-<div data-bind=" if : bmi()">
-  Your BMI is <span data-bind="text : bmi()"></span>
-  <div data-bind="if : bmi() < 18.5">You are malnourished </div>
-  <div data-bind="if : 18.5 < bmi() > 24">You are healthy </div>
-  <div data-bind="if : bmi() > 25">You are obess </div>
+<div data-bind=" if : bmi()" style="margin-left: 355px;">
+  <h4>
+    Your BMI is <span data-bind="text : bmi()"></span>
+    <div data-bind="if : bmi() < 18.5" class="text-danger">You are malnourished </div>
+    <div data-bind="if : 18.5 < bmi() > 24" class="text-success">You are healthy </div>
+    <div data-bind="if : bmi() > 25" class="text-danger">You are obess </div>
+  </h4>
 </div>
+<script src="controller.js"></script>
 </body>
 </html>
