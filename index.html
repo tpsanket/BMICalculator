@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title><b>Calculate  your BMI</b></title>
+</head>
+<body>
+<form data-bind="submit : BMI">
+  <div class="title"> Enter your Parameters </div>
+  <div class="weightcss">
+    Weight : <input type="text" data-bind="value: weight , valueUpdate : 'keypress'"> (in kg)
+    hello <span data-bind="text: weight()"></span>
+  </div>
+  <div class="heightcss">
+    Height :<input type="text" data-bind="value: height"> (in cm)
+  </div>
+  <div>
+    <button type="submit" class="calculate">Calculate </button>
+  </div>
+</form>
+<div data-bind=" if : bmi()">
+  Your BMI is <span data-bind="text : bmi()"></span>
+  <div data-bind="if : bmi() < 18.5">You are malnourished </div>
+  <div data-bind="if : 18.5 < bmi() > 24">You are healthy </div>
+  <div data-bind="if : bmi() > 25">You are obess </div>
+</div>
+</body>
+</html>
