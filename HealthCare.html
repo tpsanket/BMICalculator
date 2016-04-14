@@ -5,9 +5,16 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/html" id="DAPT">
-      <a href="http://www.daptstudy.org/for-clinicians/score_calculator.htm">Calculate DAPT score</a>
-    </script>
+    <script type="text/html" id="DAPT"><a href="http://www.daptstudy.org/for-clinicians/score_calculator.htm">Calculate DAPT score</a></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/redmond/jquery-ui.css"> 
+    <style>
+    label, #name #age { display:block; }
+    input.text { margin-bottom:12px; width:95%; padding: .4em; }
+    fieldset { padding:0; border:0; margin-top:25px; }
+    </style>
 </head>
 <body style="background-color: #C0C0C0 ; left: 245px ; top: 200px; position: absolute">
   <div class="panel panel-info">
@@ -32,6 +39,32 @@
         </table>
     </div>
   <div data-bind="template: 'DAPT'" style="margin-left: 180px; font-weight: 800"></div>
+  <div><button type="submit" data-bind="click: selfEvaluation" class="btn btn-success" style="position: absolute;margin-top: 5px;left: 195px;">Evaluate Yourself</button></h3></div>
+
+<div id="dialog-form" title="Enter your details">
+  <p class="validateTips">*All form fields are required.</p>
+  <form>
+    <fieldset>
+      <label for="name">Name</label><input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all">
+      <p><label for="age">Age</label><input type="text" name="age" id="age" class="text ui-widget-content ui-corner-all"></p>
+      <p><label for="Diseases">Diseases</label><input type="text" name="diseases" id="diseases" class="text ui-widget-content ui-corner-all"></p>
+      <p><button type="submit" class="btn btn-success" data-bind="click : showSimilarPeople" >People Similar Diseases</button></p>
+    </fieldset>
+    <div class="collapsable-panel" data-bind="visible: showPeople, visible: $index() < 2">
+      <table class="table table-striped">
+        <tr> <td>Name</td><td>Diseases</td><td>Age</td> </tr>
+        <tbody data-bind="foreach : retrievedData()">          
+            <tr>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: diseases"></td>
+                <td data-bind="text: age"></td>              
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+
 </body>
 <script src="HealthCare.js"></script>
 </html>
