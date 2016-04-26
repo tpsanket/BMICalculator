@@ -16,8 +16,11 @@
     fieldset { padding:0; border:0; margin-top:25px; }
     </style>
 </head>
-<body style="background-color: #C0C0C0 ; left: 245px ; top: 200px; position: absolute">
-  <div class="panel panel-info">
+<body style="background-color: #C0C0C0 ; left: 245px ; top: 200px">
+  <img src="C:\Users\sanketka\Documents\KnockoutJS\knockoutExample\BMICalculator\Die.png" id= "Die" alt="Die" data-bind="highlight: toDie" style="width: 270px; height: 200px; margin: 10px;">
+  <img src="C:\Users\sanketka\Documents\KnockoutJS\knockoutExample\BMICalculator\Saved.png" id="saved" alt="Saved" data-bind="highlight: saved" style="width: 270px; height: 200px; margin: 10px;">
+  <img src="C:\Users\sanketka\Documents\KnockoutJS\knockoutExample\BMICalculator\Healthy.png" id="healthy" alt="Healthy" data-bind="highlight: healthy" style="width: 270px; height: 200px; margin: 10px;">
+  <div class="panel panel-info" style="width : 568px ;  margin-left: 190px; margin-top: 20px">
     <div class="panel-heading">
       <h3 class="panel-title">Membership</h3>
     </div>
@@ -31,16 +34,24 @@
         <table  class="table table-striped">
           <tbody data-bind="foreach: members">
             <tr>
+              <td> <input type="radio" name="selectedPatient" value="selectedPatient" data-bind="checked:  $parent.selectedPatient"><br></td>
               <td data-bind="text: FirstName"></td>
               <td data-bind="text: LastName"></td>
               <td><button type="submit" class="btn btn-primary" data-bind="click: $parent.removeMember">Delete</button></td>
+              <td>
+                <form>
+                  <input type="radio" name="rate" value="toDie" data-bind="checked:  $parent.radioSelectedOptionValue('Die'), checkedValue : true , highlight : $parent.toDie" > To Die<br>
+                  <input type="radio" name="rate"  value="canBeSaved"  data-bind="checked: $parent.radioSelectedOptionValue('Saved'), checkedValue : false"> Can be Saved<br>
+                  <input type="radio" name="rate"  value="healthy" data-bind="checked:  $parent.radioSelectedOptionValue('healthy'),checkedValue : false"> Healthy
+                </form>
+              </td>
             </tr>
           </tbody>
         </table>
     </div>
   <div data-bind="template: 'DAPT'" style="margin-left: 180px; font-weight: 800"></div>
-  <div><button type="submit" data-bind="click: selfEvaluation" class="btn btn-success" style="position: absolute;margin-top: 5px;left: 195px;">Evaluate Yourself</button></h3></div>
-
+  <div><button type="submit" data-bind="click: selfEvaluation" class="btn btn-success" style="position: absolute;margin-top: 5px;left: 395px;">Evaluate Yourself</button></h3></div>
+  
 <div id="dialog-form" title="Enter your details">
   <p class="validateTips">*All form fields are required.</p>
   <form>
@@ -50,7 +61,7 @@
       <p><label for="Diseases">Diseases</label><input type="text" name="diseases" id="diseases" class="text ui-widget-content ui-corner-all"></p>
       <p><button type="submit" class="btn btn-success" data-bind="click : showSimilarPeople" >People Similar Diseases</button></p>
     </fieldset>
-    <div class="collapsable-panel" data-bind="visible: showPeople, visible: $index() < 2">
+    <div class="collapsable-panel" data-bind="visible: showPeople">
       <table class="table table-striped">
         <tr> <td>Name</td><td>Diseases</td><td>Age</td> </tr>
         <tbody data-bind="foreach : retrievedData()">          
